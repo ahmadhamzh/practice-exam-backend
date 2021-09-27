@@ -4,18 +4,18 @@ const AddfavModel = require("../model/addFav.model");
 
 const createDigi = (request, response) => {
     console.log('from creatDigi');
-    const { name, url, email } = request.body;
+    const { name, url, level, email } = request.body;
     const newDigimon = new AddfavModel({
-        name, url, email
+        name, url, level, email
     })
     newDigimon.save()
     response.json(newDigimon)
 }
 
 const upDateDigi = (request, response)=>{
-    const { name, url, email } = request.body;
+    const { name, url, level, email } = request.body;
     const digiId = request.params.digi_id;
-    AddfavModel.findByIdAndUpdate({_id:digiId}, { name, url, email }, {new:true},(error, updatesDigi)=>{
+    AddfavModel.findByIdAndUpdate({_id:digiId}, { name, url, level, email }, {new:true},(error, updatesDigi)=>{
         response.json(updatesDigi)
     })
 }
