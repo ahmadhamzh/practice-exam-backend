@@ -2,8 +2,7 @@ const { request, response } = require("express");
 
 const AddfavModel = require("../model/addFav.model");
 
-const createDigi = (request, response) => {
-    console.log('from creatDigi');
+const createDigi = (request, response) => {   
     const { name, url, level, email } = request.body;
     const newDigimon = new AddfavModel({
         name, url, level, email
@@ -27,7 +26,7 @@ const deleteDigi = (request, response)=>{
     ])
 }
 const getDigi = (request,response)=>{
-    AddfavModel.find((error,getResponse)=>{
+    AddfavModel.find({email:request.query.email},(error,getResponse)=>{
         response.json(getResponse)
     })
 }
